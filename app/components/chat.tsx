@@ -1244,7 +1244,7 @@ function _Chat() {
             width: 144,
             marginLeft: "auto",
             marginRight: 12,
-            filter: "brightness(1.5) blur(0.4px)",
+            filter: "brightness(1.5)",
           }}
           alt="logo"
         />
