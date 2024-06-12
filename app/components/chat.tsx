@@ -9,6 +9,8 @@ import React, {
   RefObject,
 } from "react";
 
+import AtlasCloudLogo from "../icons/atlascloud.png";
+
 import SendWhiteIcon from "../icons/send-white.svg";
 import BrainIcon from "../icons/brain.svg";
 import RenameIcon from "../icons/rename.svg";
@@ -98,6 +100,7 @@ import { ExportMessageModal } from "./exporter";
 import { getClientConfig } from "../config/client";
 import { useAllModels } from "../utils/hooks";
 import { MultimodalContent } from "../client/api";
+import Image from "next/image";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -520,7 +523,7 @@ export function ChatActions(props: {
           icon={props.uploading ? <LoadingButtonIcon /> : <ImageIcon />}
         />
       )}
-      <ChatAction
+      {/* <ChatAction
         onClick={nextTheme}
         text={Locale.Chat.InputActions.Theme[theme]}
         icon={
@@ -534,7 +537,7 @@ export function ChatActions(props: {
             ) : null}
           </>
         }
-      />
+      /> */}
 
       <ChatAction
         onClick={props.showPromptHints}
@@ -542,13 +545,13 @@ export function ChatActions(props: {
         icon={<PromptIcon />}
       />
 
-      <ChatAction
+      {/* <ChatAction
         onClick={() => {
           navigate(Path.Masks);
         }}
         text={Locale.Chat.InputActions.Masks}
         icon={<MaskIcon />}
-      />
+      /> */}
 
       <ChatAction
         text={Locale.Chat.InputActions.Clear}
@@ -974,7 +977,7 @@ function _Chat() {
           : [],
       )
       .concat(
-        userInput.length > 0 && config.sendPreviewBubble
+        userInput.length > 0 && false && config.sendPreviewBubble
           ? [
               {
                 ...createMessage({
@@ -1048,7 +1051,7 @@ function _Chat() {
   const clientConfig = useMemo(() => getClientConfig(), []);
 
   const autoFocus = !isMobileScreen; // wont auto focus on mobile screen
-  const showMaxIcon = !isMobileScreen && !clientConfig?.isApp;
+  const showMaxIcon = false && !isMobileScreen && !clientConfig?.isApp;
 
   useCommand({
     fill: setUserInput,
@@ -1230,9 +1233,21 @@ function _Chat() {
             {!session.topic ? DEFAULT_TOPIC : session.topic}
           </div>
           <div className="window-header-sub-title">
-            {Locale.Chat.SubTitle(session.messages.length)}
+            {Locale.Chat.SubTitle(session.messages.length)} / Powered by Atlas
+            Cloud
           </div>
         </div>
+        <Image
+          src={AtlasCloudLogo}
+          style={{
+            height: 27,
+            width: 144,
+            marginLeft: "auto",
+            marginRight: 12,
+            filter: "brightness(1.5) blur(0.4px)",
+          }}
+          alt="logo"
+        />
         <div className="window-actions">
           {!isMobileScreen && (
             <div className="window-action-button">
@@ -1243,7 +1258,7 @@ function _Chat() {
               />
             </div>
           )}
-          <div className="window-action-button">
+          {/* <div className="window-action-button">
             <IconButton
               icon={<ExportIcon />}
               bordered
@@ -1252,7 +1267,8 @@ function _Chat() {
                 setShowExport(true);
               }}
             />
-          </div>
+          </div> */}
+
           {showMaxIcon && (
             <div className="window-action-button">
               <IconButton
@@ -1292,7 +1308,7 @@ function _Chat() {
             i > 0 &&
             !(message.preview || message.content.length === 0) &&
             !isContext;
-          const showTyping = message.preview || message.streaming;
+          const showTyping = false && (message.preview || message.streaming);
 
           const shouldShowClearContextDivider = i === clearContextIndex - 1;
 

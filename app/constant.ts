@@ -70,12 +70,14 @@ export enum ServiceProvider {
   Azure = "Azure",
   Google = "Google",
   Anthropic = "Anthropic",
+  AtlasCloud = "AtlasCloud",
 }
 
 export enum ModelProvider {
   GPT = "GPT",
   GeminiPro = "GeminiPro",
   Claude = "Claude",
+  DeepSeek = "DeepSeek",
 }
 
 export const Anthropic = {
@@ -134,39 +136,16 @@ export const KnowledgeCutOffDate: Record<string, string> = {
   // it's now easier to add "KnowledgeCutOffDate" instead of stupid hardcoding it, as was done previously.
   "gemini-pro": "2023-12",
   "gemini-pro-vision": "2023-12",
+  "meta-llama/Llama-3-70b-chat-hf": "2023-12",
 };
 
-const openaiModels = [
-  "gpt-3.5-turbo",
-  "gpt-3.5-turbo-1106",
-  "gpt-3.5-turbo-0125",
-  "gpt-4",
-  "gpt-4-0613",
-  "gpt-4-32k",
-  "gpt-4-32k-0613",
-  "gpt-4-turbo",
-  "gpt-4-turbo-preview",
-  "gpt-4o",
-  "gpt-4o-2024-05-13",
-  "gpt-4-vision-preview",
-  "gpt-4-turbo-2024-04-09",
-];
+const openaiModels: string[] = [];
 
-const googleModels = [
-  "gemini-1.0-pro",
-  "gemini-1.5-pro-latest",
-  "gemini-1.5-flash-latest",
-  "gemini-pro-vision",
-];
+const googleModels: string[] = [];
 
-const anthropicModels = [
-  "claude-instant-1.2",
-  "claude-2.0",
-  "claude-2.1",
-  "claude-3-sonnet-20240229",
-  "claude-3-opus-20240229",
-  "claude-3-haiku-20240307",
-];
+const anthropicModels: string[] = [];
+
+const demoModels: string[] = ["meta-llama/Llama-3-70b-chat-hf"];
 
 export const DEFAULT_MODELS = [
   ...openaiModels.map((name) => ({
@@ -194,6 +173,15 @@ export const DEFAULT_MODELS = [
       id: "anthropic",
       providerName: "Anthropic",
       providerType: "anthropic",
+    },
+  })),
+  ...demoModels.map((name) => ({
+    name,
+    available: true,
+    provider: {
+      id: "atlascloud",
+      providerName: "Atlas Cloud",
+      providerType: "atlascloud",
     },
   })),
 ] as const;
