@@ -136,7 +136,7 @@ export const KnowledgeCutOffDate: Record<string, string> = {
   // it's now easier to add "KnowledgeCutOffDate" instead of stupid hardcoding it, as was done previously.
   "gemini-pro": "2023-12",
   "gemini-pro-vision": "2023-12",
-  "meta-llama/Llama-3-70b-chat-hf": "2023-12",
+  "accounts/fireworks/models/llama-v3-70b-instruct": "2023-12",
 };
 
 const openaiModels: string[] = [];
@@ -145,7 +145,9 @@ const googleModels: string[] = [];
 
 const anthropicModels: string[] = [];
 
-const demoModels: string[] = ["meta-llama/Llama-3-70b-chat-hf"];
+const demoModels: string[] = [
+  "accounts/fireworks/models/llama-v3-70b-instruct",
+];
 
 export const DEFAULT_MODELS = [
   ...openaiModels.map((name) => ({

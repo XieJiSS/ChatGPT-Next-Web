@@ -12,7 +12,9 @@ import { ClaudeApi } from "./platforms/anthropic";
 export const ROLES = ["system", "user", "assistant"] as const;
 export type MessageRole = (typeof ROLES)[number];
 
-export const Models = ["meta-llama/Llama-3-70b-chat-hf"] as const;
+export const Models = [
+  "accounts/fireworks/models/llama-v3-70b-instruct",
+] as const;
 export type ChatModel = ModelType;
 
 export interface MultimodalContent {
